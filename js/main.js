@@ -1,6 +1,8 @@
 
 const botonera = document.querySelector('#botonera');
 const contenedorBotones =document.querySelector('#contenedorBotones');
+const eleccion = document.querySelector('#botonera');
+
 
 
 const botones = ['Mar', 'Edificio', 'Señales', 'Arena','Persona'];
@@ -60,6 +62,29 @@ const arraymisImagenes = [
       ]
 
 
+
+
+const botonSeleccion = document.getElementsByTagName('button');
+
+
+
+document.addEventListener("click",(ev)=>{
+
+
+      if (ev.target.matches('#contenedorBotones button')){
+            
+        //    console.log(ev.target)
+           const tag = ev.target.id
+            misImagenes();
+         //  console.log(tag)
+      }
+
+// buscar el id --- llamado TAG en clase... con eso busca el parametro en las fotos //
+
+
+
+})
+
 const crearBotones =() => {
 
      botones.forEach((etiqueta)=>{
@@ -71,43 +96,21 @@ const crearBotones =() => {
 
       })
 }
+// hacer que recorra el array de las fotos y que coja las fotos con su tag para que las pinte las de su
+// clase, las que marque el botón seleccionado
 
-document.addEventListener("click",(ev)=>{
-
-
-      if (ev.target.matches('#contenedorBotones button')){
-            
-        //    console.log(ev.target)
-           const tag = ev.target.id
-            pintarFotos(tag);
-         //  console.log(tag)
-      }
-
-// buscar el id --- llamado TAG en clase... con eso busca el parametro en las fotos //
+const filtrarFotos = []filter('#botonSeleccion')=> {
+//console.log('entra en filtrarFotos')
 
 
-
-})
-
-
-
-const filtrarFotos = ()=>{
-console.log('entra en filtrarFotos')
 
 }
-      
-const pintarFotos = (tag)=> {
-console.log('entra en pintarFotos')
-console.log(tag)
-filtrarFotos()
-}
-   
+         
 
 
 
 function misImagenes() {
-  const eleccion = document.querySelector('#botonera');
-
+  
     arraymisImagenes.forEach(function (botonera) 
     
     {        // array y nombre de la caja
@@ -123,12 +126,9 @@ function misImagenes() {
        tarjeta.append(foto);
        tarjeta.append(texto);
        eleccion.append(tarjeta);
-    }  );
+      }  );
+
 }
-misImagenes(); 
-
-
-
 
 
 
