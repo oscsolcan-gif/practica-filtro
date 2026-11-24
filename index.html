@@ -1,57 +1,59 @@
 <!DOCTYPE html>
+<!--
+  Práctica 1.3.14: filtrar imagen (con eventos de 1.3.13).
+  Enunciado: 01-modulo1-html-css-js/1.3-JS/1.3.14-pactica-filtrar-imagen.md
+  Qué hace la página:
+   - Al entrar solo se ven los botones de las categorías.
+   - Al pulsar una categoría salen sus fotos: una grande y las demás
+     pequeñas ("relacionadas").
+   - Al pulsar una relacionada, se intercambia por la grande.
+  Los botones y las fotos los crea js/main.js; aquí solo está la estructura.
+-->
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
+    <!-- Necesario para el diseño Mobile First -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tipografía Inter (la misma que usa main.css) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     <link rel="stylesheet" href="css/main.css">
     <title>Practica de filtros para agencia de viajes</title>
-
 </head>
 
 <body>
-  
+
+    <!-- Cabecera de la página con el título (único h1) -->
     <header class="fullContainer">
-            
-        <p>AGENCIA DE VIAJES</p>
-    <img src="" alt="">
+        <h1>AGENCIA DE VIAJES BOOTCAMP</h1>
     </header>
 
+    <main id="filtradoFotos">
 
-    <main id="filtradoFotos"> 
-
-      <h1>AGENCIA DE VIAJES BOOTCAMP</h1>
-
-           <section id="botonera">
-             <h2>CATEGORIAS VIAJES</h2>
+        <!-- Zona de categorías: los botones los crea crearBotones() en main.js -->
+        <section id="botonera">
+            <h2>CATEGORIAS VIAJES</h2>
             <div id="contenedorBotones">
             </div>
-           </section>
+        </section>
 
+        <!-- Zona de fotos: empieza vacía, se rellena al pulsar una categoría -->
+        <section id="parteImagenes">
+            <!-- Aquí se escribe la categoría elegida (o el mensaje inicial) -->
+            <h3 id="claseEleccion">Elige una categoría para ver sus fotos</h3>
+            <!-- Aquí se pinta la foto grande y debajo/al lado las relacionadas -->
+            <div id="fotosSeleccionadas"></div>
+        </section>
 
-            <section id="parteImagenes">
-           
-                <!-- DIvs para el CSS y js-->
-
-                <div id ="claseEleccion"></div> 
-                <div id ="fotosSeleccionadas"></div>
-
-                <H3>FOTOS</H3>
-               </section>
-
-
-    
     </main>
 
-
-
-
     <footer class="fullContainer">
-    
+        <p>Agencia de Viajes · práctica de filtrado de imágenes</p>
     </footer>
 
-<script src="js/main.js"></script>
+    <!-- Script al final del body: así los elementos de arriba ya existen
+         cuando main.js los busca -->
+    <script src="js/main.js"></script>
 
 </body>
 

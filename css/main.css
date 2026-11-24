@@ -1,80 +1,180 @@
+/* ==========================================================
+   Práctica 1.3.14 · Filtrar imagen
+   Mobile First: lo que no lleva media query es el formato móvil;
+   los media queries reordenan la zona de fotos al ensanchar.
+   ========================================================== */
 
-/* =============== movil =============== */
 
+/* =============== Formato móvil =============== */
+
+/* Base de toda la página: fuente, fondo y sin márgenes por defecto */
 body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #2d67dc;
+}
 
-    min-width: 80%; 
-    margin: 0;
-    padding: 0;
-    font-family: "Inter", Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    background-color: #2d67dc;
-  
-  }
+/* Header y footer comparten color y centrado; ocupan todo el ancho */
+header, footer {
+  background-color: #2f0202;
+  color: white;
+  text-align: center;
+  padding: 2rem 0;
+}
 
-  
-      header, footer {
-      min-width: 80%; 
-      background-color: #2f0202;
-      color: white;
-      text-align: center;
-      margin: auto;
-      padding: 2rem 0;
-      }
+/* Título de la cabecera: sin márgenes extra para no engordar el header */
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
 
-      
-      /* 2 · borde y sombra */
-      header.class {
-      order: 1px solid grey;
-      box-shadow: 0 2px 6px rgb(0 0 0 / .3);
-      margin: 10px;     
-      }    
-      
-      /* 3 · hover: lo mismo, pero más marcado */
-      section#filtradoFotos:hover {
-      box-shadow: 0 6px 14px rgb(0 0 0 / .5);
-      }
+/* Header: borde y sombra (antes decía "order" en vez de "border") */
+header.fullContainer {
+  border: 1px solid grey;
+  box-shadow: 0 2px 6px rgb(0 0 0 / .3);
+}
+
+/* Contenido principal con aire a los lados */
+main {
+  padding: 1rem;
+  color: white;
+}
+
+/* Las imágenes ocupan el ancho de su caja sin deformarse */
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
 
+/* ----- Botones de categoría ----- */
 
-      /* =============== 768 =============== */
+/* Los botones se colocan en fila y saltan de línea si no caben */
+#contenedorBotones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
 
-      
+#contenedorBotones button {
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #2f0202;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover: el botón crece un poco */
+#contenedorBotones button:hover {
+  transform: scale(1.05);
+}
+
+/* Botón de la categoría elegida (clase que pone main.js) */
+#contenedorBotones button.activo {
+  background-color: #2f0202;
+  color: white;
+}
+
+
+/* ----- Zona de fotos ----- */
+
+/* Foto grande: figure con su pie de texto */
+#principal {
+  margin: 0;
+  background-color: white;
+  color: #222;
+  border: 1px solid grey;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / .3);
+  overflow: hidden;            /* la foto respeta las esquinas redondeadas */
+}
+
+#principal figcaption {
+  padding: 0.75rem 1rem;
+}
+
+/* Relacionadas en móvil: tres por fila, pequeñas */
+#relacionadas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+#relacionadas img {
+  width: calc(33.333% - 0.5rem);
+  border: 1px solid grey;
+  border-radius: 8px;
+  cursor: pointer;             /* indica que se puede pulsar */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover: la miniatura crece y se marca la sombra */
+#relacionadas img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgb(0 0 0 / .5);
+}
+
+
+/* =============== Formato 768 · Tablet =============== */
+
 @media (min-width: 768px) {
-  /*es lo mismo que poner #paginaViajes que header#paginaVIajes */
 
-  header#paginaViajes {
+  /* Grande a la izquierda y relacionadas en columna a la derecha */
+  #fotosSeleccionadas {
     display: flex;
-    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-start;
   }
-  /* igual que antes indico el selector donde está el id el simbolo # */
 
-   section#destinos {
+  #principal {
+    flex: 2 1 60%;
+  }
+
+  #relacionadas {
     flex: 1 1 30%;
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  /* En columna cada miniatura ocupa todo el ancho de su columna */
+  #relacionadas img {
+    width: 100%;
   }
 }
 
 
+/* =============== Formato 992 =============== */
 
-      /* =============== 992 =============== */
-
-
-
-      
 @media (min-width: 992px) {
+
+  /* Header y footer alineados a la izquierda, con más aire */
   header, footer {
     text-align: left;
+    padding: 1rem 2rem;
+  }
+
+  main {
     padding: 1rem 2rem;
   }
 }
 
 
+/* =============== Formato 1200 =============== */
 
-      /* =============== 1200 =============== */
+@media (min-width: 1200px) {
 
-
-      
-@media (min-width:1200px) {
-
+  /* En pantalla grande el contenido no se estira sin límite */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
 }
